@@ -79,7 +79,7 @@ audio.addEventListener('pause', () => playerState(false));
 audio.addEventListener('error', () => { playerState(false); $('#player-message').textContent = 'The stream is unavailable. Please try again later.'; });
 $('#refresh').addEventListener('click', loadSchedule);
 async function init() {
-  try { config = await (await fetchResource('/station.json')).json(); } catch { $('#player-message').textContent = 'Station configuration unavailable'; }
+  try { config = await (await fetchResource(`${import.meta.env.BASE_URL}station.json`)).json(); } catch { $('#player-message').textContent = 'Station configuration unavailable'; }
   $('#introduction').textContent = config.introduction || 'We bring scouts together through stories, hands-on learning, and the joy of making a connection.';
   if (safeUrl(config.streamUrl) && config.streamUrl) { audio.src = safeUrl(config.streamUrl); $('#play').disabled = false; $('#player-message').textContent = 'Ready when you are'; }
   if (config.albumUrl && safeUrl(config.albumUrl)) { $('#album-link').href = safeUrl(config.albumUrl); $('#album-link').hidden = false; }

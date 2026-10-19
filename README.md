@@ -36,3 +36,9 @@ Without configured sources, the page explicitly labels its example classes and i
 ## Validation
 
 Production build and Chromium browser smoke checks cover desktop/mobile layout, sample content, actual XLSX parsing through a mocked external response, gallery loading, contacts, player controls, and a failed schedule request. Real station playback and provider access require the station URLs.
+
+## Host on GitHub Pages
+
+The ready-built site is committed in `docs/`. In repository Settings → Pages, choose **Deploy from a branch**, branch **main**, folder **/docs**, then Save. The site will be at https://pkoniarski.github.io/JOTA/ after GitHub finishes deploying. Publishing the source root directly will not run this Vite app.
+
+After editing the site or `public/station.json`, run `npm run build:pages`, then commit and push `docs/` together with the source changes. The build uses relative asset paths and loads station configuration from the deployment base path. `npm run build` still builds `dist/` for other hosts.
